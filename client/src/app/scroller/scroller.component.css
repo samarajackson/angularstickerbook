@@ -1,3 +1,4 @@
+
 .example-item{
     height:15vh;
     overflow-x:scroll;
@@ -7,13 +8,13 @@
     width:100%;
 }
 .example-item img {
-    height:11vh;
-    margin:10px;
+    height:10vh;
+    margin:0.5vh;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
 }
 .example-dialog-content {
-    width:100px;
+    width:10vh;
     -webkit-transition-property: -webkit-transform;
     -moz-transition-property: -moz-transform;
     -o-transition-property: -o-transform;
@@ -23,39 +24,25 @@
     position: absolute;
 }
 .example-dialog-content img {
-    height:100px;
+    height:10vh;
 }
 
  ::-webkit-scrollbar {
-    width: 12px;
+    width: 1.2vh;
 }
  
  ::-webkit-scrollbar-track {
     background-color:gray;
-    border-radius: 10px;
+    border-radius: 1vh;
 }
  
  ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    border-radius: 1vh;
     background-color:pink;
 }
 
-.background img {
-    margin: 0px auto;
-    background-size: cover;
-    width:100%;
-} 
-.background {
-    z-index:-1;
-    height:85vh;
-    overflow-x:hidden;
-    overflow-y:hidden;
-    white-space:nowrap;
-    position: relative;
-    margin:0;
-}
 .arrowright img, .arrowleft img{
-    width:50px;
+    width:7vh;
     z-index:5;
     white-space: nowrap;
  
@@ -83,13 +70,47 @@
 }
 .info {
     vertical-align: center;
-    top:1%;
+    top:1vh;
     z-index:99;
-    right:5px;
+    right:1vh;
     position: absolute;
 }
 .info img{
-    width:50px;
+    width:7vh;
     z-index:5;
     white-space: nowrap;
+}
+@media only screen and (orientation:landscape){
+.background img {
+    margin: 0px auto;
+    background-size: cover;
+    width:100%;
+} 
+.background {
+    z-index:-1;
+    height:85vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    white-space:nowrap;
+    position: relative;
+    margin:0;
+}
+}
+
+@media only screen and (orientation: portrait) {
+    .background img {
+        margin: 0px auto;
+        background-size: cover;
+        height:100%;
+    } 
+    .background {
+        z-index:-1;
+        height:85vh;
+        overflow-x:hidden;
+        overflow-y:hidden;
+        white-space:nowrap;
+        position: relative;
+        margin:0;
+    }
+
 }

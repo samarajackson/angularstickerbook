@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>sticker works!</p>\n<button (click)=\"openDialog()\">Open a draggable dialog</button>\n\n<ng-template>\n  <div class=\"example-dialog-content\" cdkDrag cdkDragRootElement=\".cdk-overlay-pane\">\n    Drag the dialog around!\n  </div>\n</ng-template>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\n  <h4 class=\"modal-title\">Keyboard Sticker Controls</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"activeModal.dismiss('Cross click')\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"modal-body\">\n  <h6>Sorry! Keyboard sticker controls are not yet available on mobile!</h6>\n  <p>You can still arrange your stickers! If you'd like more functionality please use the app with a keyboard.</p>\n</div>");
 
 /***/ }),
 
@@ -317,16 +317,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _background_background_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./background/background.component */ "./src/app/background/background.component.ts");
-/* harmony import */ var _scroller_scroller_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scroller/scroller.component */ "./src/app/scroller/scroller.component.ts");
+/* harmony import */ var _sticker_sticker_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sticker/sticker.component */ "./src/app/sticker/sticker.component.ts");
+/* harmony import */ var _background_background_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./background/background.component */ "./src/app/background/background.component.ts");
+/* harmony import */ var _scroller_scroller_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./scroller/scroller.component */ "./src/app/scroller/scroller.component.ts");
+
 
 
 
 
 
 const routes = [
-    { path: 'background', component: _background_background_component__WEBPACK_IMPORTED_MODULE_3__["BackgroundComponent"] },
-    { path: '**', component: _scroller_scroller_component__WEBPACK_IMPORTED_MODULE_4__["ScrollerComponent"] }
+    { path: 'background', component: _background_background_component__WEBPACK_IMPORTED_MODULE_4__["BackgroundComponent"] },
+    { path: 'sticker', component: _sticker_sticker_component__WEBPACK_IMPORTED_MODULE_3__["StickerComponent"] },
+    { path: '**', component: _scroller_scroller_component__WEBPACK_IMPORTED_MODULE_5__["ScrollerComponent"] }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -507,7 +510,7 @@ BackgroundComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".example-item{\n    height:15vh;\n    overflow-x:scroll;\n    overflow-y:hidden;\n    white-space: nowrap;\n    background:#6b6b6b;\n    width:100%;\n}\n.example-item img {\n    height:11vh;\n    margin:10px;\n    display: inline-block;\n    vertical-align: top;\n}\n.example-dialog-content {\n    width:100px;\n    -webkit-transition-property: -webkit-transform;\n    transition-property: -webkit-transform;\n    transition-property: transform;\n    transition-property: transform, -webkit-transform;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    z-index: 5;\n    position: absolute;\n}\n.example-dialog-content img {\n    height:100px;\n}\n::-webkit-scrollbar {\n    width: 12px;\n}\n::-webkit-scrollbar-track {\n    background-color:gray;\n    border-radius: 10px;\n}\n::-webkit-scrollbar-thumb {\n    border-radius: 10px;\n    background-color:pink;\n}\n.background img {\n    margin: 0px auto;\n    background-size: cover;\n    width:100%;\n}\n.background {\n    z-index:-1;\n    height:85vh;\n    overflow-x:hidden;\n    overflow-y:hidden;\n    white-space:nowrap;\n    position: relative;\n    margin:0;\n}\n.arrowright img, .arrowleft img{\n    width:50px;\n    z-index:5;\n    white-space: nowrap;\n \n}\n.arrowright{\n    vertical-align: center;\n    top:50%;\n    z-index:99;\n    right:0;\n    position: absolute;\n    \n}\n.arrowleft {\n    vertical-align: center;\n    top:50%;\n    z-index:99;\n    left:0;\n    position: absolute;\n}\n.background-scroller{\n    position: relative;\n    padding: 0;\n    margin:0;\n    vertical-align: top;\n}\n.info {\n    vertical-align: center;\n    top:1%;\n    z-index:99;\n    right:5px;\n    position: absolute;\n}\n.info img{\n    width:50px;\n    z-index:5;\n    white-space: nowrap;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2Nyb2xsZXIvc2Nyb2xsZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFdBQVc7SUFDWCxpQkFBaUI7SUFDakIsaUJBQWlCO0lBQ2pCLG1CQUFtQjtJQUNuQixrQkFBa0I7SUFDbEIsVUFBVTtBQUNkO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsV0FBVztJQUNYLHFCQUFxQjtJQUNyQixtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLFdBQVc7SUFDWCw4Q0FBOEM7SUFHOUMsc0NBQThCO0lBQTlCLDhCQUE4QjtJQUE5QixpREFBOEI7SUFDOUIsNEJBQW9CO1lBQXBCLG9CQUFvQjtJQUNwQixVQUFVO0lBQ1Ysa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSxZQUFZO0FBQ2hCO0FBRUM7SUFDRyxXQUFXO0FBQ2Y7QUFFQztJQUNHLHFCQUFxQjtJQUNyQixtQkFBbUI7QUFDdkI7QUFFQztJQUNHLG1CQUFtQjtJQUNuQixxQkFBcUI7QUFDekI7QUFFQTtJQUNJLGdCQUFnQjtJQUNoQixzQkFBc0I7SUFDdEIsVUFBVTtBQUNkO0FBQ0E7SUFDSSxVQUFVO0lBQ1YsV0FBVztJQUNYLGlCQUFpQjtJQUNqQixpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLGtCQUFrQjtJQUNsQixRQUFRO0FBQ1o7QUFDQTtJQUNJLFVBQVU7SUFDVixTQUFTO0lBQ1QsbUJBQW1COztBQUV2QjtBQUNBO0lBQ0ksc0JBQXNCO0lBQ3RCLE9BQU87SUFDUCxVQUFVO0lBQ1YsT0FBTztJQUNQLGtCQUFrQjs7QUFFdEI7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixPQUFPO0lBQ1AsVUFBVTtJQUNWLE1BQU07SUFDTixrQkFBa0I7QUFDdEI7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixVQUFVO0lBQ1YsUUFBUTtJQUNSLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksc0JBQXNCO0lBQ3RCLE1BQU07SUFDTixVQUFVO0lBQ1YsU0FBUztJQUNULGtCQUFrQjtBQUN0QjtBQUNBO0lBQ0ksVUFBVTtJQUNWLFNBQVM7SUFDVCxtQkFBbUI7QUFDdkIiLCJmaWxlIjoic3JjL2FwcC9zY3JvbGxlci9zY3JvbGxlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmV4YW1wbGUtaXRlbXtcbiAgICBoZWlnaHQ6MTV2aDtcbiAgICBvdmVyZmxvdy14OnNjcm9sbDtcbiAgICBvdmVyZmxvdy15OmhpZGRlbjtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIGJhY2tncm91bmQ6IzZiNmI2YjtcbiAgICB3aWR0aDoxMDAlO1xufVxuLmV4YW1wbGUtaXRlbSBpbWcge1xuICAgIGhlaWdodDoxMXZoO1xuICAgIG1hcmdpbjoxMHB4O1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB2ZXJ0aWNhbC1hbGlnbjogdG9wO1xufVxuLmV4YW1wbGUtZGlhbG9nLWNvbnRlbnQge1xuICAgIHdpZHRoOjEwMHB4O1xuICAgIC13ZWJraXQtdHJhbnNpdGlvbi1wcm9wZXJ0eTogLXdlYmtpdC10cmFuc2Zvcm07XG4gICAgLW1vei10cmFuc2l0aW9uLXByb3BlcnR5OiAtbW96LXRyYW5zZm9ybTtcbiAgICAtby10cmFuc2l0aW9uLXByb3BlcnR5OiAtby10cmFuc2Zvcm07XG4gICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogdHJhbnNmb3JtO1xuICAgIHRyYW5zZm9ybTogc2NhbGVYKDEpO1xuICAgIHotaW5kZXg6IDU7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuLmV4YW1wbGUtZGlhbG9nLWNvbnRlbnQgaW1nIHtcbiAgICBoZWlnaHQ6MTAwcHg7XG59XG5cbiA6Oi13ZWJraXQtc2Nyb2xsYmFyIHtcbiAgICB3aWR0aDogMTJweDtcbn1cbiBcbiA6Oi13ZWJraXQtc2Nyb2xsYmFyLXRyYWNrIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOmdyYXk7XG4gICAgYm9yZGVyLXJhZGl1czogMTBweDtcbn1cbiBcbiA6Oi13ZWJraXQtc2Nyb2xsYmFyLXRodW1iIHtcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6cGluaztcbn1cblxuLmJhY2tncm91bmQgaW1nIHtcbiAgICBtYXJnaW46IDBweCBhdXRvO1xuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgd2lkdGg6MTAwJTtcbn0gXG4uYmFja2dyb3VuZCB7XG4gICAgei1pbmRleDotMTtcbiAgICBoZWlnaHQ6ODV2aDtcbiAgICBvdmVyZmxvdy14OmhpZGRlbjtcbiAgICBvdmVyZmxvdy15OmhpZGRlbjtcbiAgICB3aGl0ZS1zcGFjZTpub3dyYXA7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1hcmdpbjowO1xufVxuLmFycm93cmlnaHQgaW1nLCAuYXJyb3dsZWZ0IGltZ3tcbiAgICB3aWR0aDo1MHB4O1xuICAgIHotaW5kZXg6NTtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuIFxufVxuLmFycm93cmlnaHR7XG4gICAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbiAgICB0b3A6NTAlO1xuICAgIHotaW5kZXg6OTk7XG4gICAgcmlnaHQ6MDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgXG59XG4uYXJyb3dsZWZ0IHtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xuICAgIHRvcDo1MCU7XG4gICAgei1pbmRleDo5OTtcbiAgICBsZWZ0OjA7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuLmJhY2tncm91bmQtc2Nyb2xsZXJ7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHBhZGRpbmc6IDA7XG4gICAgbWFyZ2luOjA7XG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi5pbmZvIHtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xuICAgIHRvcDoxJTtcbiAgICB6LWluZGV4Ojk5O1xuICAgIHJpZ2h0OjVweDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG59XG4uaW5mbyBpbWd7XG4gICAgd2lkdGg6NTBweDtcbiAgICB6LWluZGV4OjU7XG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n.example-item{\n    height:15vh;\n    overflow-x:scroll;\n    overflow-y:hidden;\n    white-space: nowrap;\n    background:#6b6b6b;\n    width:100%;\n}\n.example-item img {\n    height:10vh;\n    margin:0.5vh;\n    display: inline-block;\n    vertical-align: middle;\n}\n.example-dialog-content {\n    width:10vh;\n    -webkit-transition-property: -webkit-transform;\n    transition-property: -webkit-transform;\n    transition-property: transform;\n    transition-property: transform, -webkit-transform;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    z-index: 5;\n    position: absolute;\n}\n.example-dialog-content img {\n    height:10vh;\n}\n::-webkit-scrollbar {\n    width: 1.2vh;\n}\n::-webkit-scrollbar-track {\n    background-color:gray;\n    border-radius: 1vh;\n}\n::-webkit-scrollbar-thumb {\n    border-radius: 1vh;\n    background-color:pink;\n}\n.arrowright img, .arrowleft img{\n    width:7vh;\n    z-index:5;\n    white-space: nowrap;\n \n}\n.arrowright{\n    vertical-align: center;\n    top:50%;\n    z-index:99;\n    right:0;\n    position: absolute;\n    \n}\n.arrowleft {\n    vertical-align: center;\n    top:50%;\n    z-index:99;\n    left:0;\n    position: absolute;\n}\n.background-scroller{\n    position: relative;\n    padding: 0;\n    margin:0;\n    vertical-align: top;\n}\n.info {\n    vertical-align: center;\n    top:1vh;\n    z-index:99;\n    right:1vh;\n    position: absolute;\n}\n.info img{\n    width:7vh;\n    z-index:5;\n    white-space: nowrap;\n}\n@media only screen and (orientation:landscape){\n.background img {\n    margin: 0px auto;\n    background-size: cover;\n    width:100%;\n} \n.background {\n    z-index:-1;\n    height:85vh;\n    overflow-x:hidden;\n    overflow-y:hidden;\n    white-space:nowrap;\n    position: relative;\n    margin:0;\n}\n}\n@media only screen and (orientation: portrait) {\n    .background img {\n        margin: 0px auto;\n        background-size: cover;\n        height:100%;\n    } \n    .background {\n        z-index:-1;\n        height:85vh;\n        overflow-x:hidden;\n        overflow-y:hidden;\n        white-space:nowrap;\n        position: relative;\n        margin:0;\n    }\n\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2Nyb2xsZXIvc2Nyb2xsZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsa0JBQWtCO0lBQ2xCLFVBQVU7QUFDZDtBQUNBO0lBQ0ksV0FBVztJQUNYLFlBQVk7SUFDWixxQkFBcUI7SUFDckIsc0JBQXNCO0FBQzFCO0FBQ0E7SUFDSSxVQUFVO0lBQ1YsOENBQThDO0lBRzlDLHNDQUE4QjtJQUE5Qiw4QkFBOEI7SUFBOUIsaURBQThCO0lBQzlCLDRCQUFvQjtZQUFwQixvQkFBb0I7SUFDcEIsVUFBVTtJQUNWLGtCQUFrQjtBQUN0QjtBQUNBO0lBQ0ksV0FBVztBQUNmO0FBRUM7SUFDRyxZQUFZO0FBQ2hCO0FBRUM7SUFDRyxxQkFBcUI7SUFDckIsa0JBQWtCO0FBQ3RCO0FBRUM7SUFDRyxrQkFBa0I7SUFDbEIscUJBQXFCO0FBQ3pCO0FBRUE7SUFDSSxTQUFTO0lBQ1QsU0FBUztJQUNULG1CQUFtQjs7QUFFdkI7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixPQUFPO0lBQ1AsVUFBVTtJQUNWLE9BQU87SUFDUCxrQkFBa0I7O0FBRXRCO0FBQ0E7SUFDSSxzQkFBc0I7SUFDdEIsT0FBTztJQUNQLFVBQVU7SUFDVixNQUFNO0lBQ04sa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsVUFBVTtJQUNWLFFBQVE7SUFDUixtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixPQUFPO0lBQ1AsVUFBVTtJQUNWLFNBQVM7SUFDVCxrQkFBa0I7QUFDdEI7QUFDQTtJQUNJLFNBQVM7SUFDVCxTQUFTO0lBQ1QsbUJBQW1CO0FBQ3ZCO0FBQ0E7QUFDQTtJQUNJLGdCQUFnQjtJQUNoQixzQkFBc0I7SUFDdEIsVUFBVTtBQUNkO0FBQ0E7SUFDSSxVQUFVO0lBQ1YsV0FBVztJQUNYLGlCQUFpQjtJQUNqQixpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLGtCQUFrQjtJQUNsQixRQUFRO0FBQ1o7QUFDQTtBQUVBO0lBQ0k7UUFDSSxnQkFBZ0I7UUFDaEIsc0JBQXNCO1FBQ3RCLFdBQVc7SUFDZjtJQUNBO1FBQ0ksVUFBVTtRQUNWLFdBQVc7UUFDWCxpQkFBaUI7UUFDakIsaUJBQWlCO1FBQ2pCLGtCQUFrQjtRQUNsQixrQkFBa0I7UUFDbEIsUUFBUTtJQUNaOztBQUVKIiwiZmlsZSI6InNyYy9hcHAvc2Nyb2xsZXIvc2Nyb2xsZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLmV4YW1wbGUtaXRlbXtcbiAgICBoZWlnaHQ6MTV2aDtcbiAgICBvdmVyZmxvdy14OnNjcm9sbDtcbiAgICBvdmVyZmxvdy15OmhpZGRlbjtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIGJhY2tncm91bmQ6IzZiNmI2YjtcbiAgICB3aWR0aDoxMDAlO1xufVxuLmV4YW1wbGUtaXRlbSBpbWcge1xuICAgIGhlaWdodDoxMHZoO1xuICAgIG1hcmdpbjowLjV2aDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cbi5leGFtcGxlLWRpYWxvZy1jb250ZW50IHtcbiAgICB3aWR0aDoxMHZoO1xuICAgIC13ZWJraXQtdHJhbnNpdGlvbi1wcm9wZXJ0eTogLXdlYmtpdC10cmFuc2Zvcm07XG4gICAgLW1vei10cmFuc2l0aW9uLXByb3BlcnR5OiAtbW96LXRyYW5zZm9ybTtcbiAgICAtby10cmFuc2l0aW9uLXByb3BlcnR5OiAtby10cmFuc2Zvcm07XG4gICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogdHJhbnNmb3JtO1xuICAgIHRyYW5zZm9ybTogc2NhbGVYKDEpO1xuICAgIHotaW5kZXg6IDU7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuLmV4YW1wbGUtZGlhbG9nLWNvbnRlbnQgaW1nIHtcbiAgICBoZWlnaHQ6MTB2aDtcbn1cblxuIDo6LXdlYmtpdC1zY3JvbGxiYXIge1xuICAgIHdpZHRoOiAxLjJ2aDtcbn1cbiBcbiA6Oi13ZWJraXQtc2Nyb2xsYmFyLXRyYWNrIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOmdyYXk7XG4gICAgYm9yZGVyLXJhZGl1czogMXZoO1xufVxuIFxuIDo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWIge1xuICAgIGJvcmRlci1yYWRpdXM6IDF2aDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOnBpbms7XG59XG5cbi5hcnJvd3JpZ2h0IGltZywgLmFycm93bGVmdCBpbWd7XG4gICAgd2lkdGg6N3ZoO1xuICAgIHotaW5kZXg6NTtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuIFxufVxuLmFycm93cmlnaHR7XG4gICAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbiAgICB0b3A6NTAlO1xuICAgIHotaW5kZXg6OTk7XG4gICAgcmlnaHQ6MDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgXG59XG4uYXJyb3dsZWZ0IHtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xuICAgIHRvcDo1MCU7XG4gICAgei1pbmRleDo5OTtcbiAgICBsZWZ0OjA7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuLmJhY2tncm91bmQtc2Nyb2xsZXJ7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHBhZGRpbmc6IDA7XG4gICAgbWFyZ2luOjA7XG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi5pbmZvIHtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xuICAgIHRvcDoxdmg7XG4gICAgei1pbmRleDo5OTtcbiAgICByaWdodDoxdmg7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuLmluZm8gaW1ne1xuICAgIHdpZHRoOjd2aDtcbiAgICB6LWluZGV4OjU7XG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbn1cbkBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG9yaWVudGF0aW9uOmxhbmRzY2FwZSl7XG4uYmFja2dyb3VuZCBpbWcge1xuICAgIG1hcmdpbjogMHB4IGF1dG87XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICB3aWR0aDoxMDAlO1xufSBcbi5iYWNrZ3JvdW5kIHtcbiAgICB6LWluZGV4Oi0xO1xuICAgIGhlaWdodDo4NXZoO1xuICAgIG92ZXJmbG93LXg6aGlkZGVuO1xuICAgIG92ZXJmbG93LXk6aGlkZGVuO1xuICAgIHdoaXRlLXNwYWNlOm5vd3JhcDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWFyZ2luOjA7XG59XG59XG5cbkBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG9yaWVudGF0aW9uOiBwb3J0cmFpdCkge1xuICAgIC5iYWNrZ3JvdW5kIGltZyB7XG4gICAgICAgIG1hcmdpbjogMHB4IGF1dG87XG4gICAgICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgICAgIGhlaWdodDoxMDAlO1xuICAgIH0gXG4gICAgLmJhY2tncm91bmQge1xuICAgICAgICB6LWluZGV4Oi0xO1xuICAgICAgICBoZWlnaHQ6ODV2aDtcbiAgICAgICAgb3ZlcmZsb3cteDpoaWRkZW47XG4gICAgICAgIG92ZXJmbG93LXk6aGlkZGVuO1xuICAgICAgICB3aGl0ZS1zcGFjZTpub3dyYXA7XG4gICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgICAgbWFyZ2luOjA7XG4gICAgfVxuXG59Il19 */");
 
 /***/ }),
 
@@ -523,19 +526,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ScrollerComponent", function() { return ScrollerComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/overlay */ "./node_modules/@angular/cdk/esm2015/overlay.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _background_background_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../background/background.component */ "./src/app/background/background.component.ts");
-
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
+/* harmony import */ var _background_background_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../background/background.component */ "./src/app/background/background.component.ts");
+/* harmony import */ var _sticker_sticker_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../sticker/sticker.component */ "./src/app/sticker/sticker.component.ts");
 
 
 // import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 
 
+
 let ScrollerComponent = class ScrollerComponent {
-    constructor(modalService, _overlay, _viewContainerRef) {
+    constructor(modalService, _viewContainerRef) {
         this.modalService = modalService;
-        this._overlay = _overlay;
         this._viewContainerRef = _viewContainerRef;
         this.pageIcons = [];
         this.icons = ['alien.png', 'galaxy.png', 'snow.png',
@@ -553,6 +555,8 @@ let ScrollerComponent = class ScrollerComponent {
         this.backgrounds = ['forestmountains.jpg', 'nightmountains.jpg', 'desert.jpg', 'spookyspace.jpg', 'mountains.jpg'];
         this.selectedId = null;
         this.backgroundid = 0;
+        this.vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        this.vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     }
     ngOnInit() {
         window.addEventListener("keydown", (e) => {
@@ -566,7 +570,6 @@ let ScrollerComponent = class ScrollerComponent {
         if (direction == "right") {
             if (this.backgroundid < this.backgrounds.length - 1) { //this check is to reset the array to the beginning so it keeps going
                 this.backgroundid += 1;
-                console.log("Backgrounds moving right, id is:" + this.backgroundid);
                 car.scrollBy({
                     top: 0,
                     left: imagewidth,
@@ -603,14 +606,12 @@ let ScrollerComponent = class ScrollerComponent {
     }
     selectNewId(id) {
         this.selectedId = id;
-        console.log("the selected id is:" + id);
     }
     openDialog(x) {
         this.pageIcons.push([x, 0, 1]);
         this.selectedId = this.pageIcons.length - 1;
     }
     zoomImage(e) {
-        console.log("keycode is " + e.keyCode);
         let image = document.getElementById(this.selectedId);
         if (e.keyCode == 189) { //shrink
             image.style.width = (image.offsetWidth - 10) + "px";
@@ -664,12 +665,16 @@ let ScrollerComponent = class ScrollerComponent {
         return anglestr;
     }
     viewInfo() {
-        const modalRef = this.modalService.open(_background_background_component__WEBPACK_IMPORTED_MODULE_4__["BackgroundComponent"], { centered: true });
+        if (this.vw > 1024) {
+            const modalRef = this.modalService.open(_background_background_component__WEBPACK_IMPORTED_MODULE_3__["BackgroundComponent"], { centered: true });
+        }
+        else {
+            const modalRef = this.modalService.open(_sticker_sticker_component__WEBPACK_IMPORTED_MODULE_4__["StickerComponent"], { centered: true });
+        }
     }
 };
 ScrollerComponent.ctorParameters = () => [
-    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbModal"] },
-    { type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_2__["Overlay"] },
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"] },
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -696,7 +701,7 @@ ScrollerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".example-dialog-content {\n    width: 200px;\n    height: 200px;\n    border: solid 1px #ccc;\n    color: rgba(0, 0, 0, 0.87);\n    cursor: move;\n    display: -webkit-box;\n    display: flex;\n    -webkit-box-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n            align-items: center;\n    background: #fff;\n    border-radius: 4px;\n    -webkit-transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);\n    transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);\n    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),\n                0 2px 2px 0 rgba(0, 0, 0, 0.14),\n                0 1px 5px 0 rgba(0, 0, 0, 0.12);\n  }\n  \n  .example-dialog-content:active {\n    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),\n                0 8px 10px 1px rgba(0, 0, 0, 0.14),\n                0 3px 14px 2px rgba(0, 0, 0, 0.12);\n  }\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3RpY2tlci9zdGlja2VyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxZQUFZO0lBQ1osYUFBYTtJQUNiLHNCQUFzQjtJQUN0QiwwQkFBMEI7SUFDMUIsWUFBWTtJQUNaLG9CQUFhO0lBQWIsYUFBYTtJQUNiLHdCQUF1QjtZQUF2Qix1QkFBdUI7SUFDdkIseUJBQW1CO1lBQW5CLG1CQUFtQjtJQUNuQixnQkFBZ0I7SUFDaEIsa0JBQWtCO0lBQ2xCLCtEQUF1RDtJQUF2RCx1REFBdUQ7SUFDdkQ7OytDQUUyQztFQUM3Qzs7RUFFQTtJQUNFOztrREFFOEM7RUFDaEQiLCJmaWxlIjoic3JjL2FwcC9zdGlja2VyL3N0aWNrZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5leGFtcGxlLWRpYWxvZy1jb250ZW50IHtcbiAgICB3aWR0aDogMjAwcHg7XG4gICAgaGVpZ2h0OiAyMDBweDtcbiAgICBib3JkZXI6IHNvbGlkIDFweCAjY2NjO1xuICAgIGNvbG9yOiByZ2JhKDAsIDAsIDAsIDAuODcpO1xuICAgIGN1cnNvcjogbW92ZTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgYmFja2dyb3VuZDogI2ZmZjtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgdHJhbnNpdGlvbjogYm94LXNoYWRvdyAyMDBtcyBjdWJpYy1iZXppZXIoMCwgMCwgMC4yLCAxKTtcbiAgICBib3gtc2hhZG93OiAwIDNweCAxcHggLTJweCByZ2JhKDAsIDAsIDAsIDAuMiksXG4gICAgICAgICAgICAgICAgMCAycHggMnB4IDAgcmdiYSgwLCAwLCAwLCAwLjE0KSxcbiAgICAgICAgICAgICAgICAwIDFweCA1cHggMCByZ2JhKDAsIDAsIDAsIDAuMTIpO1xuICB9XG4gIFxuICAuZXhhbXBsZS1kaWFsb2ctY29udGVudDphY3RpdmUge1xuICAgIGJveC1zaGFkb3c6IDAgNXB4IDVweCAtM3B4IHJnYmEoMCwgMCwgMCwgMC4yKSxcbiAgICAgICAgICAgICAgICAwIDhweCAxMHB4IDFweCByZ2JhKDAsIDAsIDAsIDAuMTQpLFxuICAgICAgICAgICAgICAgIDAgM3B4IDE0cHggMnB4IHJnYmEoMCwgMCwgMCwgMC4xMik7XG4gIH1cbiAgIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".modal-header{\n  background-color:pink;\n  border: solid 1px gray;\n}\np span {\n  font-weight: bold;\n}\np h6{\n  font-size: 18px;\n}\nh4{\n  font-size:22px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3RpY2tlci9zdGlja2VyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxxQkFBcUI7RUFDckIsc0JBQXNCO0FBQ3hCO0FBQ0E7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLGVBQWU7QUFDakI7QUFDQTtFQUNFLGNBQWM7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9zdGlja2VyL3N0aWNrZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tb2RhbC1oZWFkZXJ7XG4gIGJhY2tncm91bmQtY29sb3I6cGluaztcbiAgYm9yZGVyOiBzb2xpZCAxcHggZ3JheTtcbn1cbnAgc3BhbiB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xufVxucCBoNntcbiAgZm9udC1zaXplOiAxOHB4O1xufVxuaDR7XG4gIGZvbnQtc2l6ZToyMnB4O1xufSJdfQ== */");
 
 /***/ }),
 
@@ -712,39 +717,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StickerComponent", function() { return StickerComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/overlay */ "./node_modules/@angular/cdk/esm2015/overlay.js");
-/* harmony import */ var _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/portal */ "./node_modules/@angular/cdk/esm2015/portal.js");
-
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
 
 
 
 let StickerComponent = class StickerComponent {
-    constructor(_overlay, _viewContainerRef) {
-        this._overlay = _overlay;
-        this._viewContainerRef = _viewContainerRef;
+    constructor(activeModal) {
+        this.activeModal = activeModal;
     }
-    ngAfterViewInit() {
-        this._portal = new _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_3__["TemplatePortal"](this._dialogTemplate, this._viewContainerRef);
-        this._overlayRef = this._overlay.create({
-            positionStrategy: this._overlay.position().global().centerHorizontally().centerVertically(),
-            hasBackdrop: true
-        });
-        this._overlayRef.backdropClick().subscribe(() => this._overlayRef.detach());
-    }
-    ngOnDestroy() {
-        this._overlayRef.dispose();
-    }
-    openDialog() {
-        this._overlayRef.attach(this._portal);
+    ngOnInit() {
     }
 };
 StickerComponent.ctorParameters = () => [
-    { type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_2__["Overlay"] },
-    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewContainerRef"] }
+    { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"] }
 ];
-tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_core__WEBPACK_IMPORTED_MODULE_1__["TemplateRef"], { static: false })
-], StickerComponent.prototype, "_dialogTemplate", void 0);
 StickerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-sticker',

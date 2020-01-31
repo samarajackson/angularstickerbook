@@ -1,8 +1,10 @@
-<p>sticker works!</p>
-<button (click)="openDialog()">Open a draggable dialog</button>
-
-<ng-template>
-  <div class="example-dialog-content" cdkDrag cdkDragRootElement=".cdk-overlay-pane">
-    Drag the dialog around!
-  </div>
-</ng-template>
+<div class="modal-header">
+  <h4 class="modal-title">Keyboard Sticker Controls</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h6>Sorry! Keyboard sticker controls are not yet available on mobile!</h6>
+  <p>You can still arrange your stickers! If you'd like more functionality please use the app with a keyboard.</p>
+</div>

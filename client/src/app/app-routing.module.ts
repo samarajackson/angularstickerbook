@@ -7,6 +7,7 @@ import { ScrollerComponent } from './scroller/scroller.component';
 
 const routes: Routes = [
   { path: 'background', component:BackgroundComponent},
+  { path: 'sticker', component:StickerComponent},
   { path: '**', component: ScrollerComponent }
 ];
 

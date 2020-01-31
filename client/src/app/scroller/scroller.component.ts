@@ -7,6 +7,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { BackgroundComponent } from '../background/background.component';
+import { StickerComponent } from '../sticker/sticker.component';
 
 
 @Component({
@@ -35,13 +36,14 @@ export class ScrollerComponent implements OnInit{
   backgrounds = ['forestmountains.jpg', 'nightmountains.jpg','desert.jpg','spookyspace.jpg','mountains.jpg'];
   selectedId = null;
   backgroundid = 0;
-
+  vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   ngOnInit() {
     window.addEventListener("keydown", (e) => {
       this.zoomImage(e)
     });
   }
-  constructor(private modalService: NgbModal, private _overlay: Overlay, private _viewContainerRef: ViewContainerRef) {
+  constructor(private modalService: NgbModal, private _viewContainerRef: ViewContainerRef) {
   
   }
   changeBackground(direction){
@@ -51,7 +53,6 @@ export class ScrollerComponent implements OnInit{
     if(direction == "right") {
       if (this.backgroundid < this.backgrounds.length - 1){ //this check is to reset the array to the beginning so it keeps going
         this.backgroundid += 1;
-        console.log("Backgrounds moving right, id is:" + this.backgroundid);
         car.scrollBy({
           top:0,
           left: imagewidth,
@@ -89,7 +90,6 @@ export class ScrollerComponent implements OnInit{
   }
   selectNewId(id) {
     this.selectedId = id;
-    console.log("the selected id is:" + id)
   }
 
   openDialog(x) { //this opens a new image
@@ -98,7 +98,6 @@ export class ScrollerComponent implements OnInit{
   }
 
   zoomImage(e) {
-    console.log("keycode is "+ e.keyCode);
     let image = document.getElementById(this.selectedId);
     if(e.keyCode == 189) { //shrink
       image.style.width = (image.offsetWidth - 10) + "px";
@@ -153,6 +152,11 @@ export class ScrollerComponent implements OnInit{
   }
 
   viewInfo(){ //open instructions
-    const modalRef = this.modalService.open(BackgroundComponent, { centered: true});
+    if(this.vw>1024){
+      const modalRef = this.modalService.open(BackgroundComponent, { centered: true});
+    }
+    else{
+      const modalRef = this.modalService.open(StickerComponent, { centered: true});
+    }
   }
 }
