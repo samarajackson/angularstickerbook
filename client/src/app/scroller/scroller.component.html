@@ -1,0 +1,34 @@
+<div class="example-item">
+    <cdk-drop-list (dropped)="onDrop($event)">
+        <ng-container *ngFor="let item of icons ">
+            <img src="../assets/cute_icons/{{item}}" alt="cute icon" (click)="openDialog(item)" cdkDrag>
+        </ng-container>
+    </cdk-drop-list>
+</div>
+
+<div class="background-scroller">
+    <div class="arrowright">
+        <a (click)="changeBackground('right')">
+            <img src="../assets/specialty/rightarrow.png">
+        </a>
+    </div>
+    <div class="arrowleft">
+        <a (click)="changeBackground('left')">
+            <img src="../assets/specialty/leftarrow.png">
+        </a>
+    </div>
+    <div class="info">
+        <a (click)="viewInfo()">
+            <img src="../assets/specialty/information2.png">
+        </a>
+    </div>
+    <div class="example-dialog-content" cdkDrag *ngFor="let item of pageIcons; let i = index;">
+        <ng-container *ngIf="item">
+            <img id="{{i}}" src="../assets/cute_icons/{{item[0]}}" alt="cute icon" (click)="selectNewId(i)"
+                class="rotate">
+        </ng-container>
+    </div>
+    <div class="background" id="backcarousel">
+        <img *ngFor="let x of backgrounds; let i = index" src="../assets/backgrounds/{{x}}" id="img{{i}}">
+    </div>
+</div>

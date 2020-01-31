@@ -1,0 +1,95 @@
+.example-item{
+    height:15vh;
+    overflow-x:scroll;
+    overflow-y:hidden;
+    white-space: nowrap;
+    background:#6b6b6b;
+    width:100%;
+}
+.example-item img {
+    height:11vh;
+    margin:10px;
+    display: inline-block;
+    vertical-align: top;
+}
+.example-dialog-content {
+    width:100px;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+    transform: scaleX(1);
+    z-index: 5;
+    position: absolute;
+}
+.example-dialog-content img {
+    height:100px;
+}
+
+ ::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+ ::-webkit-scrollbar-track {
+    background-color:gray;
+    border-radius: 10px;
+}
+ 
+ ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color:pink;
+}
+
+.background img {
+    margin: 0px auto;
+    background-size: cover;
+    width:100%;
+} 
+.background {
+    z-index:-1;
+    height:85vh;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    white-space:nowrap;
+    position: relative;
+    margin:0;
+}
+.arrowright img, .arrowleft img{
+    width:50px;
+    z-index:5;
+    white-space: nowrap;
+ 
+}
+.arrowright{
+    vertical-align: center;
+    top:50%;
+    z-index:99;
+    right:0;
+    position: absolute;
+    
+}
+.arrowleft {
+    vertical-align: center;
+    top:50%;
+    z-index:99;
+    left:0;
+    position: absolute;
+}
+.background-scroller{
+    position: relative;
+    padding: 0;
+    margin:0;
+    vertical-align: top;
+}
+.info {
+    vertical-align: center;
+    top:1%;
+    z-index:99;
+    right:5px;
+    position: absolute;
+}
+.info img{
+    width:50px;
+    z-index:5;
+    white-space: nowrap;
+}
