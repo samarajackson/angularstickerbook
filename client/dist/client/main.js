@@ -58,7 +58,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"example-item\">\n    <cdk-drop-list (dropped)=\"onDrop($event)\">\n        <ng-container *ngFor=\"let item of icons \">\n            <img src=\"../assets/cute_icons/{{item}}\" alt=\"cute icon\" (click)=\"openDialog(item)\" cdkDrag>\n        </ng-container>\n    </cdk-drop-list>\n</div>\n\n<div class=\"background-scroller\">\n    <div class=\"arrowright\">\n        <a (click)=\"changeBackground('right')\">\n            <img src=\"../assets/specialty/rightarrow.png\">\n        </a>\n    </div>\n    <div class=\"arrowleft\">\n        <a (click)=\"changeBackground('left')\">\n            <img src=\"../assets/specialty/leftarrow.png\">\n        </a>\n    </div>\n    <div class=\"info\">\n        <a (click)=\"viewInfo()\">\n            <img src=\"../assets/specialty/information2.png\">\n        </a>\n    </div>\n    <div class=\"example-dialog-content\" cdkDrag *ngFor=\"let item of pageIcons; let i = index;\">\n        <ng-container *ngIf=\"item\">\n            <img id=\"{{i}}\" src=\"../assets/cute_icons/{{item[0]}}\" alt=\"cute icon\" (click)=\"selectNewId(i)\"\n                class=\"rotate\">\n        </ng-container>\n    </div>\n    <div class=\"background\" id=\"backcarousel\">\n        <img *ngFor=\"let x of backgrounds; let i = index\" src=\"../assets/backgrounds/{{x}}\" id=\"img{{i}}\">\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"example-item\">\n    <cdk-drop-list (dropped)=\"onDrop($event)\">\n        <ng-container *ngFor=\"let item of icons \">\n            <img src=\"../assets/cute_icons/{{item}}\" alt=\"cute icon\" (click)=\"openDialog(item)\" cdkDrag>\n        </ng-container>\n    </cdk-drop-list>\n</div>\n\n<div class=\"background-scroller\">\n    <div class=\"arrowright\">\n        <a (click)=\"changeBackground('right')\">\n            <img src=\"../assets/specialty/rightarrow.png\">\n        </a>\n    </div>\n    <div class=\"arrowleft\">\n        <a (click)=\"changeBackground('left')\">\n            <img src=\"../assets/specialty/leftarrow.png\">\n        </a>\n    </div>\n    <div class=\"info\">\n        <a (click)=\"shrink()\">\n            <img src=\"../assets/specialty/minus.png\" alt=\"shrink\">\n        </a>\n        <a (click)=\"grow()\">\n            <img src=\"../assets/specialty/plus.png\" alt=\"grow\">\n        </a>\n        <a (click)=\"rotatecw()\">\n            <img src=\"../assets/specialty/rotatecw.png\" alt=\"clockwise\">\n        </a>\n        <a (click)=\"rotateccw()\">\n            <img src=\"../assets/specialty/rotateccw.png\" alt=\"counter clockwise\">\n        </a>\n        <a (click)=\"viewInfo()\">\n            <img src=\"../assets/specialty/information2.png\">\n        </a>\n    </div>\n    <div class=\"example-dialog-content\" cdkDrag *ngFor=\"let item of pageIcons; let i = index;\">\n        <ng-container *ngIf=\"item\">\n            <img id=\"{{i}}\" src=\"../assets/cute_icons/{{item[0]}}\" alt=\"cute icon\" (click)=\"selectNewId(i)\"\n                class=\"rotate\">\n        </ng-container>\n    </div>\n    <div class=\"background\" id=\"backcarousel\">\n        <img *ngFor=\"let x of backgrounds; let i = index\" src=\"../assets/backgrounds/{{x}}\" id=\"img{{i}}\">\n    </div>\n</div>");
 
 /***/ }),
 
@@ -79,7 +79,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************!*\
   !*** ./node_modules/tslib/tslib.es6.js ***!
   \*****************************************/
-/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault */
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -104,6 +104,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -172,10 +174,11 @@ function __metadata(metadataKey, metadataValue) {
 }
 
 function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 }
@@ -213,14 +216,15 @@ function __exportStar(m, exports) {
 }
 
 function __values(o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
-    return {
+    if (o && typeof o.length === "number") return {
         next: function () {
             if (o && i >= o.length) o = void 0;
             return { value: o && o[i++], done: !o };
         }
     };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 }
 
 function __read(o, n) {
@@ -299,6 +303,21 @@ function __importStar(mod) {
 
 function __importDefault(mod) {
     return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
 }
 
 
@@ -510,7 +529,7 @@ BackgroundComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n.example-item{\n    height:15vh;\n    overflow-x:scroll;\n    overflow-y:hidden;\n    white-space: nowrap;\n    background:#6b6b6b;\n    width:100%;\n}\n.example-item img {\n    height:10vh;\n    margin:0.5vh;\n    display: inline-block;\n    vertical-align: middle;\n}\n.example-dialog-content {\n    width:10vh;\n    -webkit-transition-property: -webkit-transform;\n    transition-property: -webkit-transform;\n    transition-property: transform;\n    transition-property: transform, -webkit-transform;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    z-index: 5;\n    position: absolute;\n}\n.example-dialog-content img {\n    height:10vh;\n}\n::-webkit-scrollbar {\n    width: 1.2vh;\n}\n::-webkit-scrollbar-track {\n    background-color:gray;\n    border-radius: 1vh;\n}\n::-webkit-scrollbar-thumb {\n    border-radius: 1vh;\n    background-color:pink;\n}\n.arrowright img, .arrowleft img{\n    width:7vh;\n    z-index:5;\n    white-space: nowrap;\n \n}\n.arrowright{\n    vertical-align: center;\n    top:50%;\n    z-index:99;\n    right:0;\n    position: absolute;\n    \n}\n.arrowleft {\n    vertical-align: center;\n    top:50%;\n    z-index:99;\n    left:0;\n    position: absolute;\n}\n.background-scroller{\n    position: relative;\n    padding: 0;\n    margin:0;\n    vertical-align: top;\n}\n.info {\n    vertical-align: center;\n    top:1vh;\n    z-index:99;\n    right:1vh;\n    position: absolute;\n}\n.info img{\n    width:7vh;\n    z-index:5;\n    white-space: nowrap;\n}\n@media only screen and (orientation:landscape){\n.background img {\n    margin: 0px auto;\n    background-size: cover;\n    width:100%;\n} \n.background {\n    z-index:-1;\n    height:85vh;\n    overflow-x:hidden;\n    overflow-y:hidden;\n    white-space:nowrap;\n    position: relative;\n    margin:0;\n}\n}\n@media only screen and (orientation: portrait) {\n    .background img {\n        margin: 0px auto;\n        background-size: cover;\n        height:100%;\n    } \n    .background {\n        z-index:-1;\n        height:85vh;\n        overflow-x:hidden;\n        overflow-y:hidden;\n        white-space:nowrap;\n        position: relative;\n        margin:0;\n    }\n\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2Nyb2xsZXIvc2Nyb2xsZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsa0JBQWtCO0lBQ2xCLFVBQVU7QUFDZDtBQUNBO0lBQ0ksV0FBVztJQUNYLFlBQVk7SUFDWixxQkFBcUI7SUFDckIsc0JBQXNCO0FBQzFCO0FBQ0E7SUFDSSxVQUFVO0lBQ1YsOENBQThDO0lBRzlDLHNDQUE4QjtJQUE5Qiw4QkFBOEI7SUFBOUIsaURBQThCO0lBQzlCLDRCQUFvQjtZQUFwQixvQkFBb0I7SUFDcEIsVUFBVTtJQUNWLGtCQUFrQjtBQUN0QjtBQUNBO0lBQ0ksV0FBVztBQUNmO0FBRUM7SUFDRyxZQUFZO0FBQ2hCO0FBRUM7SUFDRyxxQkFBcUI7SUFDckIsa0JBQWtCO0FBQ3RCO0FBRUM7SUFDRyxrQkFBa0I7SUFDbEIscUJBQXFCO0FBQ3pCO0FBRUE7SUFDSSxTQUFTO0lBQ1QsU0FBUztJQUNULG1CQUFtQjs7QUFFdkI7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixPQUFPO0lBQ1AsVUFBVTtJQUNWLE9BQU87SUFDUCxrQkFBa0I7O0FBRXRCO0FBQ0E7SUFDSSxzQkFBc0I7SUFDdEIsT0FBTztJQUNQLFVBQVU7SUFDVixNQUFNO0lBQ04sa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsVUFBVTtJQUNWLFFBQVE7SUFDUixtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixPQUFPO0lBQ1AsVUFBVTtJQUNWLFNBQVM7SUFDVCxrQkFBa0I7QUFDdEI7QUFDQTtJQUNJLFNBQVM7SUFDVCxTQUFTO0lBQ1QsbUJBQW1CO0FBQ3ZCO0FBQ0E7QUFDQTtJQUNJLGdCQUFnQjtJQUNoQixzQkFBc0I7SUFDdEIsVUFBVTtBQUNkO0FBQ0E7SUFDSSxVQUFVO0lBQ1YsV0FBVztJQUNYLGlCQUFpQjtJQUNqQixpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLGtCQUFrQjtJQUNsQixRQUFRO0FBQ1o7QUFDQTtBQUVBO0lBQ0k7UUFDSSxnQkFBZ0I7UUFDaEIsc0JBQXNCO1FBQ3RCLFdBQVc7SUFDZjtJQUNBO1FBQ0ksVUFBVTtRQUNWLFdBQVc7UUFDWCxpQkFBaUI7UUFDakIsaUJBQWlCO1FBQ2pCLGtCQUFrQjtRQUNsQixrQkFBa0I7UUFDbEIsUUFBUTtJQUNaOztBQUVKIiwiZmlsZSI6InNyYy9hcHAvc2Nyb2xsZXIvc2Nyb2xsZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLmV4YW1wbGUtaXRlbXtcbiAgICBoZWlnaHQ6MTV2aDtcbiAgICBvdmVyZmxvdy14OnNjcm9sbDtcbiAgICBvdmVyZmxvdy15OmhpZGRlbjtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICAgIGJhY2tncm91bmQ6IzZiNmI2YjtcbiAgICB3aWR0aDoxMDAlO1xufVxuLmV4YW1wbGUtaXRlbSBpbWcge1xuICAgIGhlaWdodDoxMHZoO1xuICAgIG1hcmdpbjowLjV2aDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgdmVydGljYWwtYWxpZ246IG1pZGRsZTtcbn1cbi5leGFtcGxlLWRpYWxvZy1jb250ZW50IHtcbiAgICB3aWR0aDoxMHZoO1xuICAgIC13ZWJraXQtdHJhbnNpdGlvbi1wcm9wZXJ0eTogLXdlYmtpdC10cmFuc2Zvcm07XG4gICAgLW1vei10cmFuc2l0aW9uLXByb3BlcnR5OiAtbW96LXRyYW5zZm9ybTtcbiAgICAtby10cmFuc2l0aW9uLXByb3BlcnR5OiAtby10cmFuc2Zvcm07XG4gICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogdHJhbnNmb3JtO1xuICAgIHRyYW5zZm9ybTogc2NhbGVYKDEpO1xuICAgIHotaW5kZXg6IDU7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuLmV4YW1wbGUtZGlhbG9nLWNvbnRlbnQgaW1nIHtcbiAgICBoZWlnaHQ6MTB2aDtcbn1cblxuIDo6LXdlYmtpdC1zY3JvbGxiYXIge1xuICAgIHdpZHRoOiAxLjJ2aDtcbn1cbiBcbiA6Oi13ZWJraXQtc2Nyb2xsYmFyLXRyYWNrIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOmdyYXk7XG4gICAgYm9yZGVyLXJhZGl1czogMXZoO1xufVxuIFxuIDo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWIge1xuICAgIGJvcmRlci1yYWRpdXM6IDF2aDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOnBpbms7XG59XG5cbi5hcnJvd3JpZ2h0IGltZywgLmFycm93bGVmdCBpbWd7XG4gICAgd2lkdGg6N3ZoO1xuICAgIHotaW5kZXg6NTtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuIFxufVxuLmFycm93cmlnaHR7XG4gICAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbiAgICB0b3A6NTAlO1xuICAgIHotaW5kZXg6OTk7XG4gICAgcmlnaHQ6MDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgXG59XG4uYXJyb3dsZWZ0IHtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xuICAgIHRvcDo1MCU7XG4gICAgei1pbmRleDo5OTtcbiAgICBsZWZ0OjA7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuLmJhY2tncm91bmQtc2Nyb2xsZXJ7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIHBhZGRpbmc6IDA7XG4gICAgbWFyZ2luOjA7XG4gICAgdmVydGljYWwtYWxpZ246IHRvcDtcbn1cbi5pbmZvIHtcbiAgICB2ZXJ0aWNhbC1hbGlnbjogY2VudGVyO1xuICAgIHRvcDoxdmg7XG4gICAgei1pbmRleDo5OTtcbiAgICByaWdodDoxdmg7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xufVxuLmluZm8gaW1ne1xuICAgIHdpZHRoOjd2aDtcbiAgICB6LWluZGV4OjU7XG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbn1cbkBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG9yaWVudGF0aW9uOmxhbmRzY2FwZSl7XG4uYmFja2dyb3VuZCBpbWcge1xuICAgIG1hcmdpbjogMHB4IGF1dG87XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICB3aWR0aDoxMDAlO1xufSBcbi5iYWNrZ3JvdW5kIHtcbiAgICB6LWluZGV4Oi0xO1xuICAgIGhlaWdodDo4NXZoO1xuICAgIG92ZXJmbG93LXg6aGlkZGVuO1xuICAgIG92ZXJmbG93LXk6aGlkZGVuO1xuICAgIHdoaXRlLXNwYWNlOm5vd3JhcDtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWFyZ2luOjA7XG59XG59XG5cbkBtZWRpYSBvbmx5IHNjcmVlbiBhbmQgKG9yaWVudGF0aW9uOiBwb3J0cmFpdCkge1xuICAgIC5iYWNrZ3JvdW5kIGltZyB7XG4gICAgICAgIG1hcmdpbjogMHB4IGF1dG87XG4gICAgICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgICAgIGhlaWdodDoxMDAlO1xuICAgIH0gXG4gICAgLmJhY2tncm91bmQge1xuICAgICAgICB6LWluZGV4Oi0xO1xuICAgICAgICBoZWlnaHQ6ODV2aDtcbiAgICAgICAgb3ZlcmZsb3cteDpoaWRkZW47XG4gICAgICAgIG92ZXJmbG93LXk6aGlkZGVuO1xuICAgICAgICB3aGl0ZS1zcGFjZTpub3dyYXA7XG4gICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgICAgbWFyZ2luOjA7XG4gICAgfVxuXG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n.example-item{\n    height:15vh;\n    overflow-x:scroll;\n    overflow-y:hidden;\n    white-space: nowrap;\n    background:#6b6b6b;\n    width:100%;\n}\n.example-item img {\n    height:10vh;\n    margin:0.5vh;\n    display: inline-block;\n    vertical-align: middle;\n}\n.example-dialog-content {\n    width:10vh;\n    -webkit-transition-property: -webkit-transform;\n    transition-property: -webkit-transform;\n    transition-property: transform;\n    transition-property: transform, -webkit-transform;\n    -webkit-transform: scaleX(1);\n            transform: scaleX(1);\n    z-index: 5;\n    position: absolute;\n}\n.example-dialog-content img {\n    height:10vh;\n}\n::-webkit-scrollbar {\n    width: 1.2vh;\n}\n::-webkit-scrollbar-track {\n    background-color:gray;\n    border-radius: 1vh;\n}\n::-webkit-scrollbar-thumb {\n    border-radius: 1vh;\n    background-color:pink;\n}\n.arrowright img, .arrowleft img{\n    width:7vh;\n    z-index:5;\n    white-space: nowrap;\n \n}\n.arrowright{\n    vertical-align: center;\n    top:50%;\n    z-index:99;\n    right:0;\n    position: absolute;\n    \n}\n.arrowleft {\n    vertical-align: center;\n    top:50%;\n    z-index:99;\n    left:0;\n    position: absolute;\n}\n.background-scroller{\n    position: relative;\n    padding: 0;\n    margin:0;\n    vertical-align: top;\n}\n.info {\n    vertical-align: center;\n    top:1vh;\n    z-index:99;\n    right:1vh;\n    position: absolute;\n}\n.info img{\n    width:5vh;\n    z-index:5;\n    padding-left:1%;\n    white-space: nowrap;\n}\n@media only screen and (orientation:landscape){\n.background img {\n    margin: 0px auto;\n    background-size: cover;\n    width:100%;\n} \n.background {\n    z-index:-1;\n    height:85vh;\n    overflow-x:hidden;\n    overflow-y:hidden;\n    white-space:nowrap;\n    position: relative;\n    margin:0;\n}\n}\n@media only screen and (orientation: portrait) {\n    .background img {\n        margin: 0px auto;\n        background-size: cover;\n        height:100%;\n    } \n    .background {\n        z-index:-1;\n        height:85vh;\n        overflow-x:hidden;\n        overflow-y:hidden;\n        white-space:nowrap;\n        position: relative;\n        margin:0;\n    }\n\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc2Nyb2xsZXIvc2Nyb2xsZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQ0E7SUFDSSxXQUFXO0lBQ1gsaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsa0JBQWtCO0lBQ2xCLFVBQVU7QUFDZDtBQUNBO0lBQ0ksV0FBVztJQUNYLFlBQVk7SUFDWixxQkFBcUI7SUFDckIsc0JBQXNCO0FBQzFCO0FBQ0E7SUFDSSxVQUFVO0lBQ1YsOENBQThDO0lBRzlDLHNDQUE4QjtJQUE5Qiw4QkFBOEI7SUFBOUIsaURBQThCO0lBQzlCLDRCQUFvQjtZQUFwQixvQkFBb0I7SUFDcEIsVUFBVTtJQUNWLGtCQUFrQjtBQUN0QjtBQUNBO0lBQ0ksV0FBVztBQUNmO0FBRUM7SUFDRyxZQUFZO0FBQ2hCO0FBRUM7SUFDRyxxQkFBcUI7SUFDckIsa0JBQWtCO0FBQ3RCO0FBRUM7SUFDRyxrQkFBa0I7SUFDbEIscUJBQXFCO0FBQ3pCO0FBRUE7SUFDSSxTQUFTO0lBQ1QsU0FBUztJQUNULG1CQUFtQjs7QUFFdkI7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixPQUFPO0lBQ1AsVUFBVTtJQUNWLE9BQU87SUFDUCxrQkFBa0I7O0FBRXRCO0FBQ0E7SUFDSSxzQkFBc0I7SUFDdEIsT0FBTztJQUNQLFVBQVU7SUFDVixNQUFNO0lBQ04sa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsVUFBVTtJQUNWLFFBQVE7SUFDUixtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLHNCQUFzQjtJQUN0QixPQUFPO0lBQ1AsVUFBVTtJQUNWLFNBQVM7SUFDVCxrQkFBa0I7QUFDdEI7QUFDQTtJQUNJLFNBQVM7SUFDVCxTQUFTO0lBQ1QsZUFBZTtJQUNmLG1CQUFtQjtBQUN2QjtBQUNBO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsc0JBQXNCO0lBQ3RCLFVBQVU7QUFDZDtBQUNBO0lBQ0ksVUFBVTtJQUNWLFdBQVc7SUFDWCxpQkFBaUI7SUFDakIsaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsUUFBUTtBQUNaO0FBQ0E7QUFFQTtJQUNJO1FBQ0ksZ0JBQWdCO1FBQ2hCLHNCQUFzQjtRQUN0QixXQUFXO0lBQ2Y7SUFDQTtRQUNJLFVBQVU7UUFDVixXQUFXO1FBQ1gsaUJBQWlCO1FBQ2pCLGlCQUFpQjtRQUNqQixrQkFBa0I7UUFDbEIsa0JBQWtCO1FBQ2xCLFFBQVE7SUFDWjs7QUFFSiIsImZpbGUiOiJzcmMvYXBwL3Njcm9sbGVyL3Njcm9sbGVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5leGFtcGxlLWl0ZW17XG4gICAgaGVpZ2h0OjE1dmg7XG4gICAgb3ZlcmZsb3cteDpzY3JvbGw7XG4gICAgb3ZlcmZsb3cteTpoaWRkZW47XG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgICBiYWNrZ3JvdW5kOiM2YjZiNmI7XG4gICAgd2lkdGg6MTAwJTtcbn1cbi5leGFtcGxlLWl0ZW0gaW1nIHtcbiAgICBoZWlnaHQ6MTB2aDtcbiAgICBtYXJnaW46MC41dmg7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7XG59XG4uZXhhbXBsZS1kaWFsb2ctY29udGVudCB7XG4gICAgd2lkdGg6MTB2aDtcbiAgICAtd2Via2l0LXRyYW5zaXRpb24tcHJvcGVydHk6IC13ZWJraXQtdHJhbnNmb3JtO1xuICAgIC1tb3otdHJhbnNpdGlvbi1wcm9wZXJ0eTogLW1vei10cmFuc2Zvcm07XG4gICAgLW8tdHJhbnNpdGlvbi1wcm9wZXJ0eTogLW8tdHJhbnNmb3JtO1xuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IHRyYW5zZm9ybTtcbiAgICB0cmFuc2Zvcm06IHNjYWxlWCgxKTtcbiAgICB6LWluZGV4OiA1O1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbn1cbi5leGFtcGxlLWRpYWxvZy1jb250ZW50IGltZyB7XG4gICAgaGVpZ2h0OjEwdmg7XG59XG5cbiA6Oi13ZWJraXQtc2Nyb2xsYmFyIHtcbiAgICB3aWR0aDogMS4ydmg7XG59XG4gXG4gOjotd2Via2l0LXNjcm9sbGJhci10cmFjayB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjpncmF5O1xuICAgIGJvcmRlci1yYWRpdXM6IDF2aDtcbn1cbiBcbiA6Oi13ZWJraXQtc2Nyb2xsYmFyLXRodW1iIHtcbiAgICBib3JkZXItcmFkaXVzOiAxdmg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjpwaW5rO1xufVxuXG4uYXJyb3dyaWdodCBpbWcsIC5hcnJvd2xlZnQgaW1ne1xuICAgIHdpZHRoOjd2aDtcbiAgICB6LWluZGV4OjU7XG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiBcbn1cbi5hcnJvd3JpZ2h0e1xuICAgIHZlcnRpY2FsLWFsaWduOiBjZW50ZXI7XG4gICAgdG9wOjUwJTtcbiAgICB6LWluZGV4Ojk5O1xuICAgIHJpZ2h0OjA7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIFxufVxuLmFycm93bGVmdCB7XG4gICAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbiAgICB0b3A6NTAlO1xuICAgIHotaW5kZXg6OTk7XG4gICAgbGVmdDowO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbn1cbi5iYWNrZ3JvdW5kLXNjcm9sbGVye1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBwYWRkaW5nOiAwO1xuICAgIG1hcmdpbjowO1xuICAgIHZlcnRpY2FsLWFsaWduOiB0b3A7XG59XG4uaW5mbyB7XG4gICAgdmVydGljYWwtYWxpZ246IGNlbnRlcjtcbiAgICB0b3A6MXZoO1xuICAgIHotaW5kZXg6OTk7XG4gICAgcmlnaHQ6MXZoO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbn1cbi5pbmZvIGltZ3tcbiAgICB3aWR0aDo1dmg7XG4gICAgei1pbmRleDo1O1xuICAgIHBhZGRpbmctbGVmdDoxJTtcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xufVxuQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAob3JpZW50YXRpb246bGFuZHNjYXBlKXtcbi5iYWNrZ3JvdW5kIGltZyB7XG4gICAgbWFyZ2luOiAwcHggYXV0bztcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgIHdpZHRoOjEwMCU7XG59IFxuLmJhY2tncm91bmQge1xuICAgIHotaW5kZXg6LTE7XG4gICAgaGVpZ2h0Ojg1dmg7XG4gICAgb3ZlcmZsb3cteDpoaWRkZW47XG4gICAgb3ZlcmZsb3cteTpoaWRkZW47XG4gICAgd2hpdGUtc3BhY2U6bm93cmFwO1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXJnaW46MDtcbn1cbn1cblxuQG1lZGlhIG9ubHkgc2NyZWVuIGFuZCAob3JpZW50YXRpb246IHBvcnRyYWl0KSB7XG4gICAgLmJhY2tncm91bmQgaW1nIHtcbiAgICAgICAgbWFyZ2luOiAwcHggYXV0bztcbiAgICAgICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICAgICAgaGVpZ2h0OjEwMCU7XG4gICAgfSBcbiAgICAuYmFja2dyb3VuZCB7XG4gICAgICAgIHotaW5kZXg6LTE7XG4gICAgICAgIGhlaWdodDo4NXZoO1xuICAgICAgICBvdmVyZmxvdy14OmhpZGRlbjtcbiAgICAgICAgb3ZlcmZsb3cteTpoaWRkZW47XG4gICAgICAgIHdoaXRlLXNwYWNlOm5vd3JhcDtcbiAgICAgICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgICAgICBtYXJnaW46MDtcbiAgICB9XG5cbn0iXX0= */");
 
 /***/ }),
 
@@ -612,41 +631,23 @@ let ScrollerComponent = class ScrollerComponent {
         this.selectedId = this.pageIcons.length - 1;
     }
     zoomImage(e) {
-        let image = document.getElementById(this.selectedId);
         if (e.keyCode == 189) { //shrink
-            image.style.width = (image.offsetWidth - 10) + "px";
-            image.style.height = (image.offsetHeight - 10) + "px";
+            this.shrink();
         }
         else if (e.keyCode == 187) { //grow
-            image.style.width = (image.offsetWidth + 10) + "px";
-            image.style.height = (image.offsetHeight + 10) + "px";
+            this.grow();
         }
         else if (e.keyCode == 188) { //rotate left
-            let rotation = this.pageIcons[this.selectedId][1];
-            rotation -= 10;
-            this.pageIcons[this.selectedId][1] = rotation;
-            let anglestr = ' rotate(' + rotation + 'deg)';
-            image.style.webkitTransform = anglestr + this.checkifflipped();
+            this.rotateccw();
         }
         else if (e.keyCode == 190) { //rotate right
-            let rotation = this.pageIcons[this.selectedId][1];
-            rotation += 10;
-            this.pageIcons[this.selectedId][1] = rotation;
-            let anglestr = ' rotate(' + rotation + 'deg)';
-            image.style.webkitTransform = anglestr + this.checkifflipped();
+            this.rotatecw();
         }
         else if (e.keyCode == 70) { //flip the image
-            if (this.pageIcons[this.selectedId][2] == -1) {
-                image.style.webkitTransform = " scaleX(-1)" + this.getrotation();
-                this.pageIcons[this.selectedId][2] = 1;
-            }
-            else {
-                image.style.webkitTransform = "" + this.getrotation();
-                this.pageIcons[this.selectedId][2] = -1;
-            }
+            this.flipimage();
         }
         else if (e.keyCode == 8) { //delete the image
-            this.pageIcons.splice(this.selectedId, 1);
+            this.delete();
         }
     }
     checkifflipped() {
@@ -671,6 +672,48 @@ let ScrollerComponent = class ScrollerComponent {
         else {
             const modalRef = this.modalService.open(_sticker_sticker_component__WEBPACK_IMPORTED_MODULE_4__["StickerComponent"], { centered: true });
         }
+    }
+    shrink() {
+        let image = document.getElementById(this.selectedId);
+        image.style.width = (image.offsetWidth - 10) + "px";
+        image.style.height = (image.offsetHeight - 10) + "px";
+    }
+    grow() {
+        console.log("called grow");
+        let image = document.getElementById(this.selectedId);
+        console.log("image: " + image);
+        image.style.width = (image.offsetWidth + 10) + "px";
+        image.style.height = (image.offsetHeight + 10) + "px";
+    }
+    rotateccw() {
+        let image = document.getElementById(this.selectedId);
+        let rotation = this.pageIcons[this.selectedId][1];
+        rotation -= 10;
+        this.pageIcons[this.selectedId][1] = rotation;
+        let anglestr = ' rotate(' + rotation + 'deg)';
+        image.style.webkitTransform = anglestr + this.checkifflipped();
+    }
+    rotatecw() {
+        let image = document.getElementById(this.selectedId);
+        let rotation = this.pageIcons[this.selectedId][1];
+        rotation += 10;
+        this.pageIcons[this.selectedId][1] = rotation;
+        let anglestr = ' rotate(' + rotation + 'deg)';
+        image.style.webkitTransform = anglestr + this.checkifflipped();
+    }
+    flipimage() {
+        let image = document.getElementById(this.selectedId);
+        if (this.pageIcons[this.selectedId][2] == -1) {
+            image.style.webkitTransform = " scaleX(-1)" + this.getrotation();
+            this.pageIcons[this.selectedId][2] = 1;
+        }
+        else {
+            image.style.webkitTransform = "" + this.getrotation();
+            this.pageIcons[this.selectedId][2] = -1;
+        }
+    }
+    delete() {
+        this.pageIcons.splice(this.selectedId, 1);
     }
 };
 ScrollerComponent.ctorParameters = () => [
